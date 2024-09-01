@@ -8,6 +8,7 @@ var usersRouter = require('./routes/users');
 const postRouter = require('./routes/posts');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
 var app = express();
 // 程式出現重大錯誤時
 process.on('uncaughtException', err => {
@@ -25,7 +26,13 @@ dotenv.config({ path: './test.env' });
 // mongoose
 // .connect(DB)
 // .then(() => console.log('資料庫連接成功'));
-
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/javascripts', express.static(path.join(__dirname, 'javascripts')));
+app.set('view engine', 'ejs'); // 設置 EJS 為視圖引擎
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 mongoose.connect('mongodb://localhost:27017/testPost4')
   .then(res => console.log("連線資料成功"));

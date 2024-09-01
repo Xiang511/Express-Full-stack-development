@@ -8,14 +8,15 @@ const {isAuth,generateSendJWT} = require('../service/auth');
 router.get('/', async function(req, res, next) {
   const timeSort = req.query.timeSort == "asc" ? "createdAt":"-createdAt"
   const q = req.query.q !== undefined ? {"content": new RegExp(req.query.q)} : {};
-  const post = await Post.find(q).populate({
+  const posts = await Post.find(q).populate({
       path: 'user',
       select: 'name photo '
     }).sort(timeSort);
   // res.send('respond with a resource');
-  res.status(200).json({
-    post
-  })
+  // res.status(200).json({
+  //   post
+  // })
+  res.render('posts', { posts }); 
 });
 
 router.post('/',isAuth, handleErrorAsync(async function(req, res, next) {
