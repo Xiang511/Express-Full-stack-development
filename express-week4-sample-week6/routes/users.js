@@ -1,12 +1,16 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs'); //
 const appError = require('../service/appError'); 
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'); // 引入 jsonwebtoken
 const handleErrorAsync = require('../service/handleErrorAsync');
-const validator = require('validator');
+const validator = require('validator'); // 引入 validator
 const User = require('../models/usersModel');
 const {isAuth,generateSendJWT} = require('../service/auth');
 const router = express.Router();
+
+
+
+//動資料庫是昂貴的，所以我們要盡量減少對資料庫的操作，先寫好驗證的部分，再寫入資料庫
 
 router.post('/sign_up', handleErrorAsync(async(req, res, next) =>{
   let { email, password,confirmPassword,name } = req.body;
@@ -34,7 +38,7 @@ router.post('/sign_up', handleErrorAsync(async(req, res, next) =>{
     password,
     name
   });
-  generateSendJWT(newUser,201,res);
+  generateSendJWT(newUser,201,res);  //res 會被傳到 generateSendJWT
 }))
 
 router.post('/sign_in',handleErrorAsync(async(req,res,next)=>{

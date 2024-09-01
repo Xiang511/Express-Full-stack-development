@@ -23,19 +23,19 @@ const isAuth = handleErrorAsync(async (req, res, next) => {
         if(err){
           reject(err)
         }else{
-          resolve(payload)
+          resolve(payload) // payload 是解碼後的資料 取出 id
         }
       })
     })
-    const currentUser = await User.findById(decoded.id);
+    const currentUser = await User.findById(decoded.id); ///moogoose 的方法
   
-    req.user = currentUser;
+    req.user = currentUser; // 把 user 放到 req 裡面
     next();
   });
 const generateSendJWT= (user,statusCode,res)=>{
     // 產生 JWT token
-    const token = jwt.sign({id:user._id},process.env.JWT_SECRET,{
-      expiresIn: process.env.JWT_EXPIRES_DAY
+    const token = jwt.sign({id:user._id},process.env.JWT_SECRET,{     //payload user._id   process.env.JWT_SECRET 混淆保證安全性  
+      expiresIn: process.env.JWT_EXPIRES_DAY   // 過期時間
     });
     user.password = undefined;
     res.status(statusCode).json({

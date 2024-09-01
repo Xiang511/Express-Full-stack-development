@@ -18,8 +18,8 @@ const userSchema = new mongoose.Schema({
     },
     password:{
       type: String,
-      required: [true,'請輸入密碼'],
-      minlength: 8,
+      required: [true,'請輸入密碼'],// 必填欄位
+      minlength: 8, // 密碼最少 8 個
       select: false
     },
     createdAt: {
