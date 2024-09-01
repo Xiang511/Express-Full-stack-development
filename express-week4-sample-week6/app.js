@@ -16,7 +16,7 @@ process.on('uncaughtException', err => {
   console.error(err);
   process.exit(1);
 });
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './test.env' });
 // const DB = process.env.DATABASE.replace(
 //     '<password>',
 //     process.env.DATABASE_PASSWORD
