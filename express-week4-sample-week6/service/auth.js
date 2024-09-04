@@ -38,13 +38,14 @@ const generateSendJWT= (user,statusCode,res)=>{
       expiresIn: process.env.JWT_EXPIRES_DAY   // 過期時間
     });
     user.password = undefined;
-    res.status(statusCode).json({
-      status: 'success',
-      user:{
-        token,
-        name: user.name
-      }
-    });
+    // res.status(statusCode).json({
+    //   status: 'success',
+    //   user:{
+    //     token,
+    //     name: user.name
+    //   }
+    // });
+    return token;
   }
 
 module.exports = {

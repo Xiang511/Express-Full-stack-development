@@ -51,7 +51,11 @@ router.post('/sign_in',handleErrorAsync(async(req,res,next)=>{
   if(!auth){
     return next(appError(400,'您的密碼不正確',next));
   }
-  generateSendJWT(user,200,res);
+  const token = generateSendJWT(user); // 生成 JWT
+  res.cookie('jwt', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' }); // 設置 cookie
+  res.redirect('/posts'); // 成功登入後重定向到 posts 頁面
+  console.log(token);
+  
 }))
 
 router.get('/profile/',isAuth, handleErrorAsync(async(req, res, next) =>{
