@@ -18,9 +18,9 @@
   <header class="main-header">
     <div class="logo">
       <a href="indexZh-tw.html">
-        <i class='bx bxl-instagram'>
-          <h1>Metawall___</h1>
-        </i>
+
+        <h1>Metawall</h1>
+
       </a>
     </div>
 
@@ -68,28 +68,28 @@
         </div>
       </div>
       <% posts.forEach(post => { %>
-        <div class="main-card">
-          <div class="pic-txt-item">
-            <div class="pic">
-              <img src="https://picsum.photos/300/200/?random=10">
-            </div>
-            <div class="txt">
-              <h2><% if (post.user) { %><%= post.user.name %></h2><% } else { %><h2>Unknown user</h2><% } %></h2>
-              <p>date</p>
-            </div>
+      <div class="main-card">
+        <div class="pic-txt-item">
+          <div class="pic">
+            <img src="https://picsum.photos/300/200/?random=10">
           </div>
-          <div class="post">
-            <p> <%= post.content %></p>
-          </div>
-          <div class="image">
-            <% if (post.image) { %>
-            <img src="<%= post.image %>">
-            <% } else { %>
-            <p>No image available</p>
-            <% } %>
+          <div class="txt">
+            <h2><% if (post.user) { %><%= post.user.name %></h2><% } else { %><h2>Unknown user</h2><% } %></h2>
+            <p>date</p>
           </div>
         </div>
-        <% }) %>
+        <div class="post">
+          <p> <%= post.content %></p>
+        </div>
+        <div class="image">
+          <% if (post.image) { %>
+          <img src="<%= post.image %>">
+          <% } else { %>
+          <p>No image available</p>
+          <% } %>
+        </div>
+      </div>
+      <% }) %>
     </div>
 
     <div class="groupe2">
@@ -116,7 +116,7 @@
     </div>
   </div>
 
-  
+
 
   <script src="javascripts/main.js"></script>
 </body>
