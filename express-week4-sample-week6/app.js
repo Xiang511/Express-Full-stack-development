@@ -9,6 +9,8 @@ const postRouter = require('./routes/posts');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const swaggerApp = require('./routes/swagger');
+
 var app = express();
 // 程式出現重大錯誤時
 process.on('uncaughtException', err => {
@@ -33,7 +35,7 @@ app.use('/javascripts', express.static(path.join(__dirname, 'javascripts')));
 app.set('view engine', 'ejs'); // 設置 EJS 為視圖引擎
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(swaggerApp);
 mongoose.connect('mongodb://localhost:27017/testPost4')
   .then(res => console.log("連線資料成功"));
 const PORT = process.env.PORT || 3000;
@@ -105,4 +107,9 @@ app.use(function (err, req, res, next) {
 process.on('unhandledRejection', (err, promise) => {
   console.error('未捕捉到的 rejection：', promise, '原因：', err);
 });
+
+
+
+
+
 module.exports = app;
