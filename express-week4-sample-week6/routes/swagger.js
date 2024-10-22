@@ -2,6 +2,7 @@
 // const swaggerApp = require('./routes/swagger');
 // app.use(swaggerApp);
 //swagger.js本身要放在routes資料夾下
+// http://localhost:3000/api-docs/
 
 
 const swaggerJSDoc = require('swagger-jsdoc');
