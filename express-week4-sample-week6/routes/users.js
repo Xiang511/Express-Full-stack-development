@@ -18,7 +18,117 @@ router.get('/sign_up', (req, res) => {
 
 
 //動資料庫是昂貴的，所以我們要盡量減少對資料庫的操作，先寫好驗證的部分，再寫入資料庫
+/**
+ * @swagger
+ * /users/sign_up:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *               - confirmPassword
+ *               - name
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: User's email
+ *               password:
+ *                 type: string
+ *                 description: User's password
+ *               confirmPassword:
+ *                 type: string
+ *                 description: Confirmation of the user's password
+ *               name:
+ *                 type: string
+ *                 description: User's name
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *       400:
+ *         description: Bad request
+ */
 
+/**
+ * @swagger
+ * /users/sign_in:
+ *   post:
+ *     summary: User login
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: User's email
+ *               password:
+ *                 type: string
+ *                 description: User's password
+ *     responses:
+ *       200:
+ *         description: User logged in successfully
+ *       400:
+ *         description: Bad request
+ */
+
+/**
+ * @swagger
+ * /users/profile:
+ *   get:
+ *     summary: Get user profile
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *       401:
+ *         description: Unauthorized
+ */
+
+/**
+ * @swagger
+ * /users/updatePassword:
+ *   post:
+ *     summary: Update user password
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - password
+ *               - confirmPassword
+ *             properties:
+ *               password:
+ *                 type: string
+ *                 description: New password
+ *               confirmPassword:
+ *                 type: string
+ *                 description: Confirmation of the new password
+ *     responses:
+ *       200:
+ *         description: Password updated successfully
+ *       400:
+ *         description: Bad request
+ */
 router.post('/sign_up', handleErrorAsync(async(req, res, next) =>{
   let { email, password,confirmPassword,name } = req.body;
   // 內容不可為空
