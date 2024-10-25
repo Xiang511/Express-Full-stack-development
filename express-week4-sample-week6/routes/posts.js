@@ -18,7 +18,63 @@ router.get('/', async function(req, res, next) {
   // })
   res.render('posts', { posts }); 
 });
-
+/**
+ * @swagger
+ * /posts:
+ *   get:
+ *     summary: Retrieve a list of posts
+ *     description: Retrieve a list of posts with optional query parameters for sorting and searching.
+ *     parameters:
+ *       - in: query
+ *         name: timeSort
+ *         schema:
+ *           type: string
+ *           enum: [asc, desc]
+ *         description: Sort posts by creation time.
+ *       - in: query
+ *         name: q
+ *         schema:
+ *           type: string
+ *         description: Search posts by content.
+ *     responses:
+ *       200:
+ *         description: A list of posts.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Post'
+ *   post:
+ *     summary: Create a new post
+ *     description: Create a new post. Requires authentication.
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               content:
+ *                 type: string
+ *                 description: The content of the post.
+ *                 example: "This is a new post."
+ *     responses:
+ *       200:
+ *         description: The created post.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Post'
+ *       400:
+ *         description: Bad request.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 router.post('/',isAuth, handleErrorAsync(async function(req, res, next) {
   const { content } = req.body;
   if(content == undefined){
