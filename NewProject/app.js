@@ -10,8 +10,17 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
+const bodyParser = require('body-parser');
+
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/javascripts', express.static(path.join(__dirname, 'javascripts')));
+app.set('view engine', 'ejs'); // 設置 EJS 為視圖引擎
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
