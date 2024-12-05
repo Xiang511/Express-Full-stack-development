@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -19,6 +19,9 @@ app.use('/javascripts', express.static(path.join(__dirname, 'javascripts')));
 app.set('view engine', 'ejs'); // 設置 EJS 為視圖引擎
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+mongoose.connect('mongodb://localhost:27017/newTest')
+  .then(res => console.log("連線資料庫成功"));
 
 
 
@@ -43,7 +46,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 3000);
+  res.status(err.status || 500);
   res.render('error');
 });
 
