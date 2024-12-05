@@ -13,6 +13,7 @@ var http = require('http');
  */
 
 var port = normalizePort(process.env.PORT || '3000');
+console.log(`伺服器正在 http://localhost:${port} 上運行`);
 app.set('port', port);
 
 /**
