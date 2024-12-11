@@ -28,10 +28,25 @@ process.on('uncaughtException', err => {
   console.error(err);
   process.exit(1);
 });
+
+
 dotenv.config({ path: './test.env' });
 
-mongoose.connect('mongodb://localhost:27017/newTest')
-  .then(res => console.log("連線資料庫成功"));
+const DB = process.env.DATABASE.replace('<db_password>', process.env.DATABASE_PASSWORD); //連接資料庫
+
+
+// 連接資料庫
+mongoose.connect(DB)
+    .then(() => {
+        console.log('資料庫連線成功')
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
+
+// mongoose.connect('mongodb://localhost:27017/newTest')
+//   .then(res => console.log("連線資料庫成功"));
 
 app.use(logger('dev'));
 app.use(express.json());
