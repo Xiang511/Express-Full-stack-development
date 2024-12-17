@@ -24,8 +24,8 @@ router.post('/sign_in',handleErrorAsync(async(req,res,next)=>{
   }
   const token = generateSendJWT(user); // 生成 JWT
   res.cookie('jwt', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' }); // 設置 cookie
-  // res.redirect('/posts'); // 成功登入後重定向到 posts 頁面
-  res.status(200).send('您已成功登入'); // 回復您已登入
+  res.redirect('/posts'); // 成功登入後重定向到 posts 頁面
+  // res.status(200).send('您已成功登入'); // 回復您已登入
   
 }))
 
@@ -59,8 +59,8 @@ router.post('/sign_up', handleErrorAsync(async(req, res, next) =>{
     name
   });
   generateSendJWT(newUser,201,res);  //res 會被傳到 generateSendJWT
-  // res.redirect('/posts'); // 成功登入後重定向到 posts 頁面
-  res.status(200).send('您已成功註冊'); // 回復您已登入
+  res.redirect('/posts'); // 成功登入後重定向到 posts 頁面
+  // res.status(200).send('您已成功註冊'); // 回復您已登入
 }))
 
 
