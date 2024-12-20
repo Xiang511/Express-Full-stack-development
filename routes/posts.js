@@ -14,7 +14,10 @@ router.get('/', async function(req, res, next) {
     }).sort(timeSort);
   res.render('posts', { posts }); 
 });
-
+router.get('/logout', (req, res) => {
+  res.cookie('jwt', '', { maxAge: 1 }); // 清除 cookie
+  res.redirect('../users/sign_in'); // 重定向到登入頁面
+});
 router.post('/',isAuth, handleErrorAsync(async function(req, res, next) {
   const { content } = req.body;
   if(content == undefined){
