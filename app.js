@@ -33,6 +33,8 @@ process.on('uncaughtException', err => {
 
 dotenv.config({ path: './test.env' });
 
+// 設置 strictQuery 選項
+mongoose.set('strictQuery', true);
 const DB = process.env.DATABASE.replace('<db_password>', process.env.DATABASE_PASSWORD); //連接資料庫
 
 
