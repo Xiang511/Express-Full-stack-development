@@ -66,6 +66,11 @@ router.post('/sign_up', handleErrorAsync(async(req, res, next) =>{
   // res.status(200).send('您已成功註冊'); // 回復您已登入
 }))
 
+router.get('/profile/',isAuth, handleErrorAsync(async(req, res, next) =>{
+
+  res.render('profile', { user: req.user });
+}))
+
 
 
 
