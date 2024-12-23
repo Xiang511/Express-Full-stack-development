@@ -18,6 +18,9 @@ router.post('/sign_in',handleErrorAsync(async(req,res,next)=>{
     return next(appError( 400,'帳號密碼不可為空',next));
   }
   const user = await User.findOne({ email }).select('+password');
+  if (!user) {
+    return next(appError(400, '帳號或密碼錯誤', next));
+  }
   const auth = await bcrypt.compare(password, user.password);
   if(!auth){
     return next(appError(400,'您的密碼不正確',next));
