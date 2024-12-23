@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- <link rel="stylesheet" href="/styles.css"> -->
+</head>
+<body>
+    <div class="container">
+        <h1>User Profile <%= user.name %></h1>
+        
+        <!-- <div class="profile-section">
+            <h2>Change Profile Picture</h2>
+            <form action="/update-profile-picture" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="profilePicture">Upload new profile picture:</label>
+                    <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
+                </div>
+                <button type="submit">Update Picture</button>
+            </form>
+        </div> -->
+
+        <div class="profile-section">
+            <h2>Update Password</h2>
+            <form action="/users/updatePassword" method="POST">
+                <div class="form-group">
+                    <label for="currentPassword">Current Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">New Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="confirmPassword">Confirm New Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div> -->
+                <button type="submit">Update Password</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
