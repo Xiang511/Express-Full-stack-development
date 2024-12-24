@@ -10,6 +10,8 @@ const { v4: uuidv4 } = require('uuid'); // 引入 uuid
 const firebaseAdmin = require('../service/firebase'); // 引入 firebase-admin
 const bucket = firebaseAdmin.storage().bucket(); // 取得 firebase storage 的 bucket
 
+const User = require('../models/usersModel');
+
 const {isAuth,generateSendJWT} = require('../service/auth');
 router.post('/', isAuth,upload,handleErrorAsync(async (req, res, next)=> {
     if(!req.files.length) {
@@ -56,10 +58,18 @@ router.post('/file', isAuth,upload,handleErrorAsync(async (req, res, next)=> {
     };
     // 取得檔案的網址
     blob.getSignedUrl(config, (err, fileUrl) => {
-      res.send({
-        fileUrl
+      User.findByIdAndUpdate(req.user.id, {
+        photo: fileUrl
+      }, { new: true }, (err, user) => {
+        if (err) {
+          return next(appError(500, "更新使用者照片失敗", next));
+        }
+        
       });
+      
     });
+    res.status(200).send('上傳成功');
+    // res.render('profile', { user: req.user }); // 傳遞 user 變數
   });
 
   // 如果上傳過程中發生錯誤，會觸發 error 事件
