@@ -8,18 +8,19 @@
 </head>
 <body>
     <div class="container">
+        <img src="<%= user.photo %>" alt="">
         <h1>User Profile <%= user.name %></h1>
         
-        <!-- <div class="profile-section">
+        <div class="profile-section">
             <h2>Change Profile Picture</h2>
-            <form action="/update-profile-picture" method="POST" enctype="multipart/form-data">
+            <form action="/upload/file" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="profilePicture">Upload new profile picture:</label>
                     <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
                 </div>
                 <button type="submit">Update Picture</button>
             </form>
-        </div> -->
+        </div>
 
         <div class="profile-section">
             <h2>Update Password</h2>
