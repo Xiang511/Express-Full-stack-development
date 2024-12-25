@@ -51,7 +51,24 @@ router.get('/', isAuth, async (req, res, next) => {
     next(err);
   }
 });
+// 獲取單個貼文以及其留言
+router.get('/:id/', handleErrorAsync(async (req, res, next) => {
+  const post = await Post.findById(req.params.id).populate({
+    path: 'user',
+    select: 'name photo'
+  });
+  if (!post) {
+    return next(appError(404, "找不到該貼文", next));
+  }
+  
+  // 獲取該貼文的所有留言
+  const comments = await Comment.find({ post: req.params.id }).populate('user');
 
+  // 獲取貼文者的頭像
+  const postUser = await User.findById(post.user._id)
+
+  res.render('single-posts', { post, comments, user: req.user, postUser }); // 傳遞 user 變數
+}));
 
 
 router.post('/:id/comment',isAuth, handleErrorAsync(async(req, res, next) =>  {

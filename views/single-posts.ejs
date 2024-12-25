@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Single Post</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  </style>
+</head>
+
+<body>
+
+  <input type="checkbox" id="menu-switch">
+  <header class="main-header">
+    <div class="logo">
+      <a href="/">
+
+        <h1>Metawall</h1>
+
+      </a>
+    </div>
+
+    <label for="menu-switch" class="hb icon">
+      <i class='bx bx-menu open'></i>
+      <i class='bx bx-x close'></i>
+    </label>
+
+    <nav class="main-nav">
+      <div class="userpic">
+        <img class="userimg" src="images/day51-whale.png" alt="">
+      </div>
+      <div class="mobile">
+        <a href="#"><i class='bx bx-file'></i>我的貼文牆</a>
+        <a href="#"><i class='bx bx-user'></i>修改個人資料</a>
+        <a href="#"><i class='bx bx-log-out'></i>登出</a>
+      </div>
+      <div class="link">
+        <details>
+          <summary>Member</summary>
+          <li>
+            <a href="#"><i class='bx bx-file'></i>我的貼文牆</a>
+            <a href="#"><i class='bx bx-user'></i>修改個人資料</a>
+            <a href="#"><i class='bx bx-log-out'></i>登出</a>
+          </li>
+
+        </details>
+      </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <div class="container">
+    <div class="grope1">
+      <div class="search">
+        <div class="sort"><select name="NewPost" id="NewPost">
+            <option value="" class="select">最新貼文</option>
+
+          </select>
+        </div>
+        <div class="fifter">
+          <input type="text" placeholder="搜尋貼文">
+          <button class="btnSearch"><i class='bx bx-search'></i></button>
+        </div>
+      </div>
+      <div class="main-card">
+        <div class="pic-txt-item">
+          <div class="pic">
+            <img src="<%= postUser.photo %>">
+          </div>
+          <div class="txt">
+            <h2><% if (post.user) { %><%= post.user.name %></h2><% } else { %><h2>Unknown user</h2><% } %></h2>
+            <p>date</p>
+          </div>
+        </div>
+        <div class="post">
+          <p> <%= post.content %></p>
+        </div>
+        <div class="image">
+          <% if (post.image) { %>
+          <img src="<%= post.image %>">
+          <% } else { %>
+          <p>No image available</p>
+          <% } %>
+        </div>
+        <div class="comments-section">
+          <h3>Comments</h3>
+          <ul>
+            <% comments.forEach((comment)=> { %>
+            <li>
+              <strong> <%= comment.comment %></strong>
+            </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="javascripts/main.js"></script>
+</body>
+
+</html>
