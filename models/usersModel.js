@@ -18,15 +18,32 @@ const userSchema = new mongoose.Schema({
     },
     password:{
       type: String,
-      required: [true,'請輸入密碼'],// 必填欄位
-      minlength: 8, // 密碼最少 8 個
+      required: [true,'請輸入密碼'],
+      minlength: 8,
       select: false
     },
     createdAt: {
       type: Date,
       default: Date.now,
       select: false
-    }
+    },followers: [
+      {
+        user: { type: mongoose.Schema.ObjectId, ref: 'User' },
+        createdAt: {
+          type: Date,
+          default: Date.now
+        }
+      }
+    ],
+    following: [
+      {
+        user: { type: mongoose.Schema.ObjectId, ref: 'User' },
+        createdAt: {
+          type: Date,
+          default: Date.now
+        }
+      }
+    ]
   });
 // User
 const User = mongoose.model('user', userSchema);
