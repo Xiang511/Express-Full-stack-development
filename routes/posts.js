@@ -43,7 +43,11 @@ router.get('/', isAuth, async (req, res, next) => {
       path: 'user',
       select: 'name photo'
     }).sort(timeSort);
-     
+    
+  // 格式化日期
+  posts.forEach(post => {
+    post.formattedDate = moment(post.createdAt).format('YYYY-MM-DD');
+  });
     // 獲取所有評論
     const comments = await Comment.find().populate('user');
 
@@ -61,10 +65,9 @@ router.get('/:id/', handleErrorAsync(async (req, res, next) => {
   if (!post) {
     return next(appError(404, "找不到該貼文", next));
   }
-    // 取得發文日期距離今天過了多久
-    post.formattedDate = moment(post.createdAt).fromNow();  
-    
-    
+   
+  post.formattedDate = moment(post.createdAt).format('YYYY-MM-DD');
+  
     
     // 獲取該貼文的所有留言
     const comments = await Comment.find({ post: req.params.id }).populate('user');
