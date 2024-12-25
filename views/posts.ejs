@@ -71,7 +71,11 @@
       <div class="main-card">
         <div class="pic-txt-item">
           <div class="pic">
-            <img src="https://picsum.photos/300/200/?random=10">
+            <% if (post.user) { %>
+            <img src="<%= post.user.photo %>">
+            <% } else { %>
+            <img src="default-photo.jpg" alt="Default photo">
+            <% } %>
           </div>
           <div class="txt">
             <h2><% if (post.user) { %><%= post.user.name %></h2><% } else { %><h2>Unknown user</h2><% } %></h2>
@@ -98,7 +102,7 @@
           <a href="#">張貼動態</a>
         </div>
         <div class="pics">
-          <div class="pic"><img src="https://picsum.photos/300/200/?random=19"></div>
+          <div class="pic"><img src="<%= user.photo %>"></div>
             <div class="txt"><%= user.name %></div>
         </div>
         <div class="pics">
