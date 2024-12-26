@@ -71,7 +71,11 @@ router.get('/:id/', handleErrorAsync(async (req, res, next) => {
     
     // 獲取該貼文的所有留言
     const comments = await Comment.find({ post: req.params.id }).populate('user');
-  
+
+    comments.forEach(comment => {
+      comment.formattedDate = moment(comment.createdAt).format('YYYY-MM-DD');
+    });
+
     // 獲取貼文者的頭像
     const postUser = await User.findById(post.user._id)
   
