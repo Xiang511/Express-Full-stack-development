@@ -64,9 +64,11 @@ router.post('/sign_up', handleErrorAsync(async(req, res, next) =>{
     password,
     name
   });
-  generateSendJWT(newUser,201,res);  //res 會被傳到 generateSendJWT
-  res.redirect('/posts'); // 成功登入後重定向到 posts 頁面
-  // res.status(200).send('您已成功註冊'); // 回復您已登入
+generateSendJWT(newUser,201,res);  //res 會被傳到 generateSendJWT
+  // res.redirect('/posts'); // 成功登入後重定向到 posts 頁面
+setTimeout(() => {
+  res.redirect('/');
+}, 3000);
 }))
 
 router.get('/profile/',isAuth, handleErrorAsync(async(req, res, next) =>{
