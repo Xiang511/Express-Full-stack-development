@@ -97,10 +97,7 @@ router.post('/:id/comment', isAuth, handleErrorAsync(async (req, res, next) => {
     user,
     comment
   });
-  res.status(200).json({
-    status: "success",
-    comment: newComment
-  })
+  res.redirect(`/posts/${post}`);
 
 }))
 
