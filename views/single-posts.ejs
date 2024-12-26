@@ -31,20 +31,20 @@
 
     <nav class="main-nav">
       <div class="userpic">
-        <img class="userimg" src="images/day51-whale.png" alt="">
+        <img class="userimg" src="" alt="">
       </div>
       <div class="mobile">
         <a href="#"><i class='bx bx-file'></i>我的貼文牆</a>
-        <a href="#"><i class='bx bx-user'></i>修改個人資料</a>
-        <a href="#"><i class='bx bx-log-out'></i>登出</a>
+        <a href="users/profile"><i class='bx bx-user'></i>修改個人資料</a>
+        <a href="posts/logout"><i class='bx bx-log-out'></i>登出</a>
       </div>
       <div class="link">
         <details>
           <summary>Member</summary>
           <li>
             <a href="#"><i class='bx bx-file'></i>我的貼文牆</a>
-            <a href="#"><i class='bx bx-user'></i>修改個人資料</a>
-            <a href="#"><i class='bx bx-log-out'></i>登出</a>
+            <a href="users/profile"><i class='bx bx-user'></i>修改個人資料</a>
+            <a href="posts/logout"><i class='bx bx-log-out'></i>登出</a>
           </li>
 
         </details>
@@ -84,13 +84,21 @@
           <% if (post.image) { %>
           <img src="<%= post.image %>">
           <% } else { %>
-          <p>No image available</p>
           <% } %>
         </div>
         <div class="comments-section">
           <h3>Comments</h3>
           <ul>
             <% comments.forEach((comment)=> { %>
+              <li>
+                <img src=" <%= comment.user.photo%>" alt="">
+              </li>
+              <li>
+                <strong> <%= comment.user.name%></strong>
+              </li>
+              <li>
+                <strong> <%= comment.formattedDate %></strong>
+              </li>
             <li>
               <strong> <%= comment.comment %></strong>
             </li>

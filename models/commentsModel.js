@@ -25,7 +25,7 @@ const commentSchema = new mongoose.Schema(
 commentSchema.pre(/^find/, function(next) {  // 不加上 pre 會沒有 user 的資料會只有uuid
   this.populate({
     path: 'user',
-    select: 'name id createdAt'
+    select: 'name id createdAt photo'
   });
 
   next();
