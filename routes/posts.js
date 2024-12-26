@@ -57,26 +57,6 @@ router.get('/', isAuth, async (req, res, next) => {
   }
 });
 
-//獲取自己的貼文
-router.get('/myPosts', isAuth, async (req, res, next) => {
-  try {
-    const timeSort = req.query.timeSort == "asc" ? "createdAt" : "-createdAt";
-    const posts = await Post.find({ user: req.user.id }).populate({ path: 'user',
-      select: 'name photo'
-    }).sort(timeSort);
-    
-  // 格式化日期
-  posts.forEach(post => {
-    post.formattedDate = moment(post.createdAt).format('YYYY-MM-DD');
-  });
-    // 獲取所有評論
-    const comments = await Comment.find().populate('user');
-
-    res.render('my-posts', { posts, comments, user: req.user });
-  } catch (err) {
-    next(err);
-  }
-});
 
 
 
