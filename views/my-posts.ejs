@@ -67,10 +67,15 @@
           <button class="btnSearch"><i class='bx bx-search'></i></button>
         </div>
       </div>
+      <% posts.forEach(post => { %>
       <div class="main-card">
         <div class="pic-txt-item">
           <div class="pic">
-            <img src="<%= postUser.photo %>">
+            <% if (post.user) { %>
+            <img src="<%= post.user.photo %>">
+            <% } else { %>
+            <img src="default-photo.jpg" alt="Default photo">
+            <% } %>
           </div>
           <div class="txt">
             <h2><% if (post.user) { %><%= post.user.name %></h2><% } else { %><h2>Unknown user</h2><% } %></h2>
@@ -85,29 +90,29 @@
           <img src="<%= post.image %>">
           <% } else { %>
           <% } %>
-        </div>
-        <div class="comments-section">
-          <h3>Comments</h3>
-          <ul>
-            <% comments.forEach((comment)=> { %>
-              <li>
-                <img src=" <%= comment.user.photo%>" alt="">
-              </li>
-              <li>
-                <strong> <%= comment.user.name%></strong>
-              </li>
-              <li>
-                <strong> <%= comment.formattedDate %></strong>
-              </li>
-            <li>
-              <strong> <%= comment.comment %></strong>
-            </li>
-            <% }); %>
-          </ul>
+          <button class="btnReply" onclick="location.href='/posts/<%= post._id %>'">查看回文</button>
         </div>
       </div>
+      <% }) %>
     </div>
-  </div>
+    <div class="groupe2">
+      <div class="Post-updates">
+        <div class="updates">
+          <a href="#">張貼動態</a>
+        </div>
+        <div class="pics">
+          <div class="pic"><img src="<%= user.photo %>"></div>
+          <div class="txt"><%= user.name %></div>
+        </div>
+        <div class="pics">
+          <div class="pic"><img src="https://picsum.photos/300/200/?random=17"></div>
+          <div class="txt"><a href="#">追蹤名單</a></div>
+        </div>
+        <div class="pics">
+          <div class="pic"><img src="https://picsum.photos/300/200/?random=18"></div>
+          <div class="txt"><a href="#">我按讚的貼文</a></div>
+        </div>
+      </div>
 
 
 
