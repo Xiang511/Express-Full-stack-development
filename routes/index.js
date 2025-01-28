@@ -16,7 +16,7 @@ var router = express.Router();
  *               example: '<html><head><title>MetaWall</title></head><body>...</body></html>'
  */
 router.get('/', function(req, res, next) {
-  res.render('index.ejs', { title: 'MetaWall' });
+  res.render('index.ejs', { title: 'MetaWall', messages: req.flash() });
 });
 
 module.exports = router;
