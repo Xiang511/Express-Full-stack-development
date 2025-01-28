@@ -68,6 +68,9 @@
               <div class="form-group">
                 <input type="password" id="password" name="password" required placeholder="Password">
               </div>
+              <% if (messages.error) { %>
+                <p class="errorMessage"><%= messages.error %></p>
+              <% } %>
               <div class="sign-group">
                 <button type="submit">登入</button>
                 <div class="grow"></div>
