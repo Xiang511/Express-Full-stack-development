@@ -10,6 +10,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const postRouter = require('./routes/posts');
 const uploadRouter = require('./routes/upload');
+const session = require('express-session');
+const flash = require('connect-flash');
 var app = express();
 
 // view engine setup
@@ -21,7 +23,13 @@ app.set('view engine', 'ejs'); // 設置 EJS 為視圖引擎
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
+app.use(express.urlencoded({ extended: false }));
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(flash());
 
 process.on('uncaughtException', err => {
   // 記錄錯誤下來，等到服務都處理完後，停掉該 process
