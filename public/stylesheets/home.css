@@ -103,6 +103,7 @@ body {
     border: none;
     cursor: pointer;
     padding: 1rem;
+    font-size: 1.2em;
 }
 
 footer p {
@@ -134,8 +135,11 @@ footer p {
         flex-direction: column;
         align-items: center;
     }
+    .secFrame .txt h1{
+        font-size: 4em;
+    }
     .secFrame .txt p{
-        font-size: 1.7em;
+        font-size: 1.4em;
     }
 
     footer p {
@@ -184,11 +188,18 @@ footer p {
 }
 
 @media screen and (min-width:1200px) {
+    .mainFrame{
+        max-width: 1200px;
+    }
+
     .mainFrame-content .pic {
         width: 55%;
     }
 
+    .secFrame{
+        max-width: 500px;
+    }
     .secFrame .txt {
-        margin-bottom: 8vh;
+        margin-bottom: 3vh;
     }
 }
