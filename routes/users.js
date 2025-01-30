@@ -12,7 +12,7 @@ const { isAuth, generateSendJWT } = require('../service/auth');
 const router = express.Router();
 
 router.get('/sign_in', (req, res) => {
-  res.render('sign_in');
+  res.render('sign_in', { messages: req.flash() });
 });
 
 router.post('/sign_in', handleErrorAsync(async (req, res, next) => {
@@ -37,26 +37,30 @@ router.post('/sign_in', handleErrorAsync(async (req, res, next) => {
 }));
 
 router.get('/sign_up', (req, res) => {
-  res.render('sign_up');
+  res.render('sign_up', { messages: req.flash() });
 });
 
 router.post('/sign_up', handleErrorAsync(async (req, res, next) => {
   let { email, password, confirmPassword, name } = req.body;
   // 內容不可為空
   if (!email || !password || !confirmPassword || !name) {
-    return next(appError("400", "欄位未填寫正確！", next));
+    req.flash('error', '您填寫的欄位不正確');
+    return res.redirect('/users/sign_up');
   }
   // 密碼正確
   if (password !== confirmPassword) {
-    return next(appError("400", "密碼不一致！", next));
+    req.flash('error', '您的密碼並不一致');
+    return res.redirect('/users/sign_up');
   }
   // 密碼 8 碼以上
   if (!validator.isLength(password, { min: 8 })) {
-    return next(appError("400", "密碼字數低於 8 碼", next));
+    req.flash('error', '您的密碼不足 8 碼');
+    return res.redirect('/users/sign_up');
   }
   // 是否為 Email
   if (!validator.isEmail(email)) {
-    return next(appError("400", "Email 格式不正確", next));
+    req.flash('error', '您的Email格式不正確');
+    return res.redirect('/users/sign_up');
   }
 
   // 加密密碼

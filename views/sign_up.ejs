@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>MetaWall | Hsiang</title>
+  <link rel="stylesheet" href="/stylesheets/home.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <input type="checkbox" id="menu-switch">
+  <!-- <input type="checkbox" id="menu-switch">
     <header class="main-header">
       <div class="logo">
         <a href="/">
@@ -27,39 +27,75 @@
       </label>
   
       <nav class="main-nav">
-          <a href="/index">首頁</a>
+          <a href="/">首頁</a>
           <a href="/users/sign_in"><i class='bx bx-file'></i>登入</a>
           <a href="/users/sign_up"><i class='bx bx-user'></i>註冊</a>
       </nav>
-    </header>
+    </header> -->
 
-  <main>
-    <div class="container">
-      <h2>註冊</h2>
-      <form action="/users/sign_up" method="POST">
+  <!-- <main>
+    <div class="login-container">
+      <h2>首頁</h2>
+      <form action="/users/sign_in" method="POST">
         <div class="form-group">
-          <label for="name">姓名</label>
-          <input type="name" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">電子郵件</label>
+          <label for="username">Username:</label>
           <input type="email" id="email" name="email" required>
         </div>
         <div class="form-group">
-          <label for="password">密碼</label>
+          <label for="password">Password:</label>
           <input type="password" id="password" name="password" required>
         </div>
-        <div class="form-group">
-          <label for="password">確認密碼</label>
-          <input type="confirmPassword" id="confirmPassword" name="confirmPassword" required>
-        </div>
-        <button type="submit">註冊</button>
+        <button type="submit">Login</button>
       </form>
     </div>
-  </main>
+  </main> -->
+  <main>
+    <div class="content">
+      <div class="mainFrame">
+        <div class="mainFrame-content">
+          <div class="pic">
+            <img src="/stylesheets/img/undraw_login_wqkt.png" alt="">
+          </div>
+          <div class="secFrame">
+            <div class="txt">
+              <h1>MetaWall</h1>
+              <p>註冊帳號</p>
+            </div>
 
+            <form action="/users/sign_up" method="POST">
+              <div class="form-group">
+                <input type="name" id="name" name="name" required placeholder="暱稱">
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" name="email" required placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input type="password" id="password" name="password" required placeholder="Password">
+              </div>
+              <div class="form-group">
+                <input type="confirmPassword" id="confirmPassword" name="confirmPassword" required  placeholder="confirmPassword">
+              </div>
+              <% if (messages.error) { %>
+              <p class="errorMessage"><%= messages.error %></p>
+              <% } %>
+              <div class="sign-group">
+                <button type="submit">註冊</button>
+                <div class="grow"></div>
+                <div class="sign-link">
+                  <a href="/users/sign_in">已經有帳號? 前往登入</a>
+                </div>
+              </div>
+            </form>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
   <footer>
-    <p>&copy; 2023 Metawall. All rights reserved.</p>
+    <p>&copy; 2025 Metawall | Hsiang</p>
   </footer>
 </body>
 
